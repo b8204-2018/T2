@@ -3,6 +3,8 @@
 #include "src/translit.h"
 
 int main() {
-    assert(strcmp("privet", translit((const unsigned char *) "привет")) == 0);
+    // use only small letters please
+    std::cout << translit((const unsigned char *) "здарова бандиты!") << std::endl;
+
     return 0;
 }
