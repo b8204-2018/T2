@@ -4,9 +4,9 @@
 char *translit(const unsigned char *s) {
     char eng [][4] = {
             "A", "B", "V", "G", "D", "E", "ZH", "Z", "I", "Y", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "F",
-            "H", "TS", "TCH", "SH", "SCH", "", "I", "\'", "E", "YU", "YA",
+            "H", "TS", "CH", "SH", "SCH", "", "I", "\'", "E", "YU", "YA",
             "a", "b", "v", "g", "d", "e", "zh", "z", "i", "y", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "f",
-            "h", "ts", "tch", "sh", "sch", "", "i", "\'", "e", "yu", "ya"
+            "h", "ts", "ch", "sh", "sch", "", "i", "\'", "e", "yu", "ya"
     };
     int len = 0;
     for (int i = 0; s[i] != '\0'; i++, len++);
