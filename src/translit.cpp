@@ -27,8 +27,7 @@ char *translit(const unsigned char *s) {
         }
         i++;
     }
-    std::cout << result << std::endl;
-    char res[i+1];
+    char *res = new char[i];
     strcpy(res, result.c_str());
     return res;
 }
