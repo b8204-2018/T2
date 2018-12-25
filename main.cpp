@@ -4,7 +4,6 @@
 #include <cassert>
 
 int main() {
-    //char *tr = translit((const unsigned char *)"*СапсанЁ");
     assert(strcmp(translit((const unsigned char *) "Витёк"), "Vityok") == 0);
     assert(strcmp(translit((const unsigned char *) "щ"), "shch") == 0);
     assert(strcmp(translit((const unsigned char *) "1"), "1") == 0);
