@@ -1,6 +1,12 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.13)
 project(T2)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 
-add_executable(T2 main.cpp src/translit.h src/translit.cpp)
+include_directories(.)
+
+add_executable(T2
+        CMakeLists.txt
+        main.cpp
+        translit.cpp
+        translit.h)
