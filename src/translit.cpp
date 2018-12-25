@@ -25,10 +25,6 @@ char *translit(const unsigned char *s) {
                 if (pos>=0xd090 && pos < 0xd180) {
                     pos = pos - 0xd090;
                 } else if (pos >= 0xd180 && pos <=0xd18f){
-                    //int x = pos - 0xd180;
-                    //int y = (0xd0bf - 0xd090);
-                    //int z = x + y;
-                    //pos = (0xd0bf - 0xd090) + (pos >> 12) + 1;
                     pos = ( pos - 0xd180) + (0xd0bf - 0xd090) + 1;
                 }
                 memcpy(output + j, alphabet[pos], strlen(alphabet[pos]));
