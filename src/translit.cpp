@@ -1,48 +1,54 @@
 #include "translit.h"
 #include <cstring>
 
-
 char *translit(const unsigned char *s) {
-    char alphabet [][5] = {"A", "B", "V", "G", "D", "E", "Zh", "Z", "I", "J", "K",
-                    "L", "M", "N", "O", "P", "R", "S", "T", "U", "F", "H",
-                    "Ts", "Ch", "Sh", "Shch", "", "Y", "'", "E", "Yu", "Ya",
-                    "a", "b", "v", "g", "d", "e", "zh", "z", "i", "j", "k", "l",
-                    "m", "n", "o", "p", "r", "s", "t", "u", "f", "h", "ts",
-                    "ch", "sh", "shch", "", "y", "'", "e", "yu", "ya"};
+    const unsigned char rus[][3] = {"А", "Б", "В", "Г", "Д", "Е", "Ж", "З", "И", "Й", "К",
+                           "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х",
+                           "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я",
+                           "а", "б", "в", "г", "д", "е", "ж", "з", "и", "к", "л",
+                           "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц",
+                           "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я"};
+
+
+    const char eng[][5] = {"A", "B", "V", "G", "D", "E", "Zh", "Z", "I", "J", "K",
+                           "L", "M", "N", "O", "P", "R", "S", "T", "U", "F", "H",
+                           "Ts", "Ch", "Sh", "Shch", "", "Y", "'", "E", "Yu", "Ya",
+                           "a", "b", "v", "g", "d", "e", "zh", "z", "i", "j", "k", "l",
+                           "m", "n", "o", "p", "r", "s", "t", "u", "f", "h", "ts",
+                           "ch", "sh", "shch", "", "y", "'", "e", "yu", "ya"};
 
     int length = 0;
     for (int i = 0; s[i] != '\0'; i++){
         length = length + 1;
     }
-    char *output = new char [length*5];
+
+    char *output = new char [length * 5];
     int i = 0;
     int j = 0;
     int pos;
+    char *letter = new char [3];
     while (i < length) {
-        if (s[i] == 0xd0 || s[i] == 0xd1){
-            pos  = (s[i] << 8) + s[i+1];
-            if (pos >= 0xd090 && pos <= 0xd18f ) {
-                if (pos>=0xd090 && pos < 0xd180) {
-                    pos = pos - 0xd090;
-                } else if (pos >= 0xd180 && pos <=0xd18f){
-                    pos = ( pos - 0xd180) + (0xd0bf - 0xd090) + 1;
-                }
-                memcpy(output + j, alphabet[pos], strlen(alphabet[pos]));
-                j = j + strlen(alphabet[pos]);
-            }
-            if (pos == 0xd081) {
-                memcpy(output + j, "Yo", strlen("Yo"));
-                j = j + strlen("Yo");
-            }
-            if (pos == 0xd191) {
-                memcpy(output + j, "yo", strlen("yo"));
-                j = j + strlen("yo");
-            }
-            i = i + 2;
+        if ((s[i] == 0xd0 && s[i + 1] >= 0x90 && s[i + 1] <= 0xbf) || (s[i] == 0xd1 && s[i + 1] >= 0x80 && s[i + 1] <= 0x8f)){
+            letter[0] = s[i];
+            letter[1] = s[i + 1];
+            letter[2] = '\0';
+            for (pos = 0; strcmp((const char*)rus[pos], (const char*)letter) != 0; pos++);
+            if (pos >= 41){pos++;}
+            memcpy(output + j, eng[pos], strlen(eng[pos]));
+            j += strlen(eng[pos]);
+            i += 2;
+        } else if (s[i] == 0xd0 && s[i + 1] == 0x81){
+            memcpy(output + j, "Yo", strlen("Yo"));
+            j += strlen("Yo");
+            i += 2;
+        } else if (s[i] == 0xd1 && s[i + 1] == 0x91){
+            memcpy(output + j, "yo", strlen("yo"));
+            j += strlen("yo");
+            i += 2;
         } else {
             memcpy(output + j, s + i, 1);
-            j = j + 1;
-            i = i + 1;
+            j++;
+            i++;
         }
     }
     output[j] = '\0';
