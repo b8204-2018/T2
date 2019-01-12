@@ -8,9 +8,11 @@ char *translit(const unsigned char *s) {
             "a", "b", "v", "g", "d", "e", "zh", "z", "i", "y", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "f",
             "h", "ts", "ch", "sh", "sch", "", "i", "\'", "e", "yu", "ya"
     };
-    char *trStr = new char[strlen(s) * 4];
+    int len=0;
+    for (int i = 0; s[i] != '\0'; i++, len++);
+    char *trStr = new char[len * 4];
     int  j = 0, pos;
-    for (int i = 0; i < strlen(s); i++) {
+    for (int i = 0; i < len; i++) {
         if (s[i] == 0xd0 || s[i] == 0xd1){
             pos = (s[i] << 8) + s[i + 1];
             if (pos >= 0xd090 && pos < 0xd180){
