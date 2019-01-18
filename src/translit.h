@@ -1,6 +1,6 @@
-#ifndef T2_TRANSLIT_H
-#define T2_TRANSLIT_H
+#ifndef TRANSLITE_FUNCTION
+#define TRANSLITE_FUNCTION
 
-char *translit(const unsigned char *s);
+char *translit(const unsigned char *data);
 
-#endif //T2_TRANSLIT_H
+#endif
