@@ -21,7 +21,7 @@ char *translit(const unsigned char *s) {
                 j += strlen(eng[pos]);
             }
             if (pos >= 0xd180 && pos <=0xd18f){
-                pos = (0xd0bf - 0xd090 + 1) + (pos - 0xd180);
+                pos = (pos - 0xd180) + 0x30;
                 memcpy(trStr + j, eng[pos], strlen(eng[pos]));
                 j += strlen(eng[pos]);
             }
