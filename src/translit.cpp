@@ -2,6 +2,7 @@
 #include <locale>
 #include <cstring>
 #include "assert.h"
+#include <vector>
 
 using namespace std;
 
@@ -15,9 +16,9 @@ const UCHAR Angl[][C_SIZE] = {
         "C", "CH", "SH", "SCH", "Y", "IY", "", "IE", "YU", "YA"
 };
 
-UCHAR d[] = "МОЛОКО ВКУСНОЕ"; //Строка, которую необходимо транслитнуть
 
-char *translit(const unsigned char *s) {
+char *translit(const unsigned char *d) {
+    char *a;
     for (size_t i = 0, len = sizeof(d); i < len; i++) {
         UCHAR smv[C_SIZE];
         if (d[i] == 0xd0 || d[i] == 0xd1) {
@@ -29,8 +30,8 @@ char *translit(const unsigned char *s) {
             i++;
         } else {
             memmove(smv, d+i, sizeof(UCHAR));
+            memcpy(a, smv, sizeof(UCHAR));
         }
-        cout << smv;
     }
-    return nullptr;
+    return a;
 }
