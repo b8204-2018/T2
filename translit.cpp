@@ -15,11 +15,11 @@ const UCHAR Angl[][C_SIZE] = {
         "C", "CH", "SH", "SCH", "Y", "IY", "", "IE", "YU", "YA"
 };
 
-int translit() {
-    UCHAR s[] = "МОЛОКО ВКУСНОЕ"; //Строка, которую необходимо транслитнуть
-    for (size_t i = 0, len = sizeof(s); i < len; i++) {
+char *translit(const unsigned char *s) {
+    UCHAR d[] = "МОЛОКО ВКУСНОЕ"; //Строка, которую необходимо транслитнуть
+    for (size_t i = 0, len = sizeof(d); i < len; i++) {
         UCHAR smv[C_SIZE];
-        if (s[i] == 0xd0 || s[i] == 0xd1) {
+        if (d[i] == 0xd0 || d[i] == 0xd1) {
             unsigned short int posit(0);
             memmove(&posit, s+i, 2 * sizeof(UCHAR));
             posit = posit - (unsigned short int) 0x90d0;
@@ -27,9 +27,9 @@ int translit() {
             memmove(smv, (void*)Angl[posit], C_SIZE * sizeof(UCHAR));
             i++;
         } else {
-            memmove(smv, s+i, sizeof(UCHAR));
+            memmove(smv, d+i, sizeof(UCHAR));
         }
         cout << smv;
     }
-    return 0;
+    return nullptr;
 }
