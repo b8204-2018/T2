@@ -4,8 +4,6 @@
 #include "cstring"
 
 int main() {
-    const unsigned char *s;
-    translit(s);
-    assert(strcmp("MOLOKO VKUSNOE", translit((const unsigned char *) "МОЛОКО ВКУСНОЕ")) == 0);
+    assert(strcmp("MOLOKO", translit((const unsigned char *) "МОЛОКО")) == 0);
     return 0;
 }
