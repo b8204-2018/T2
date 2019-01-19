@@ -2,12 +2,12 @@
 #include <cstring>
 
 char *translit(const unsigned char *s) {
-    char letters[64][4] = {"A", "B", "V", "G","D", "E", "Zh", "Z","I", "J",
-                           "K", "L", "M", "N", "O", "P", "R", "S", "T", "U",
-                           "F", "H", "Ts", "Ch", "Sh", "Sch", "/", "Y", "'", "E",
-                           "Yu", "Ya", "a", "b", "v", "g", "d", "e", "zh", "z",
-                           "i", "j", "k", "l", "m", "n", "o", "p", "r", "s",
-                           "t", "u", "f", "h", "ts", "ch", "sh", "sch", "/", "y", "'", "e", "yu", "ya"};
+    char letters[64][5] = {"A", "B", "V", "G", "D", "E", "Zh", "Z", "I", "J", "K",
+                           "L", "M", "N", "O", "P", "R", "S", "T", "U", "F", "H",
+                           "Ts", "Ch", "Sh", "Shch", "", "Y", "'", "E", "Yu", "Ya",
+                           "a", "b", "v", "g", "d", "e", "zh", "z", "i", "j", "k",
+                           "l", "m", "n", "o", "p", "r", "s", "t", "u", "f", "h",
+                           "ts","ch", "sh", "shch", "", "y", "'", "e", "yu", "ya"};
     int j = 0, length = 0;
     size_t pos = 0;
 
