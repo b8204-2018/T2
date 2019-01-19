@@ -4,6 +4,6 @@
 #include <iostream>
 using namespace std;
 int main() {
-  assert(strcmp("SPASIISOHRANI",translit((const unsigned char *)"СПАСИИСОХРАНИ")) == 0);
+  assert(strcmp("PRIVETTT",translit((const unsigned char *)"ПРИВЕТТТ")) == 0);
   return 0;
 }
