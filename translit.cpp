@@ -1,7 +1,8 @@
 #include <iostream>
-#include <locale>
 #include <cstring>
-#include "assert.h"
+
+#include "translit.h"
+
 
 using namespace std;
 
