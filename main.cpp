@@ -1,9 +1,13 @@
 #include <iostream>
-#include "translit.h"
-#include "assert.h"
-#include "cstring"
+#include <cstring>
+#include <cassert>
+#include "src/translit.h"
 
-int main() {
-    assert(strcmp("RAZNOE", translit((const unsigned char *) "РАЗНОЕ")) == 0);
-    return 0;
+int main () {
+
+  assert (strcmp ("Moloko vkusnoe", translit((const unsigned char *) "Молоко вкусное")) == 0);
+
+
+  return 0;
+
 }
